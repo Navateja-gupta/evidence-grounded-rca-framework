@@ -1,0 +1,9 @@
+[project]
+name = "evidence-grounded-rca-framework"
+version = "0.1.0"
+description = "Evidence-Grounded AI Framework for Root Cause Analysis in Cloud-Native Microservice Infrastructure"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

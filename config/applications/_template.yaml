@@ -1,0 +1,36 @@
+# Template for an application-specific configuration.
+#
+# Copy to config/applications/<your-app>.yaml and point the platform at it:
+#   RCA_APP_CONFIG_PATH=config/applications/<your-app>.yaml
+#
+# Only keys you set here override config/default.yaml (deep merge).
+# Keep secrets and endpoints in environment variables via ${VAR} / ${VAR:-default}.
+
+application:
+  name: <application-name>
+  description: <short description>
+  environment: <e.g. dev | staging | prod>
+
+target:
+  namespaces: []            # e.g. [<namespace>]; empty = discover
+  services: []              # empty = discover from telemetry
+  dependency_source: traces # traces | static | none
+  static_dependencies: {}   # used when dependency_source=static: {<service>: [<callee>, ...]}
+
+telemetry:
+  metrics:
+    enabled: true
+    backend: <metrics-query-backend>
+    endpoint: ${RCA_METRICS_ENDPOINT}
+  logs:
+    enabled: true
+    backend: <logs-query-backend>
+    endpoint: ${RCA_LOGS_ENDPOINT}
+  traces:
+    enabled: true
+    backend: <traces-query-backend>
+    endpoint: ${RCA_TRACES_ENDPOINT}
+
+modules:
+  llm_diagnosis:
+    params: {}              # model/provider choices go here in a later phase

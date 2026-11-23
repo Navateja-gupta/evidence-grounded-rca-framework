@@ -1,0 +1,54 @@
+# Platform-wide defaults. Application-agnostic: do NOT put application names,
+# services, namespaces or endpoints here. Provide those in an application YAML
+# (see config/applications/_template.yaml) referenced by RCA_APP_CONFIG_PATH.
+#
+# Any string value may use ${ENV_VAR} or ${ENV_VAR:-default}.
+
+application:
+  name: ${RCA_APPLICATION_NAME:-unconfigured-application}
+  description: ""
+  environment: ""
+
+target:
+  namespaces: []          # empty = discover from telemetry
+  services: []            # empty = discover from telemetry
+  dependency_source: traces
+  static_dependencies: {}
+
+telemetry:
+  provider: opentelemetry
+  otlp:
+    endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}
+    protocol: grpc
+  metrics:
+    enabled: false
+    backend: null
+    endpoint: ${RCA_METRICS_ENDPOINT:-}
+    timeout_seconds: 10
+  logs:
+    enabled: false
+    backend: null
+    endpoint: ${RCA_LOGS_ENDPOINT:-}
+    timeout_seconds: 10
+  traces:
+    enabled: false
+    backend: null
+    endpoint: ${RCA_TRACES_ENDPOINT:-}
+    timeout_seconds: 10
+
+modules:
+  anomaly_detection:
+    enabled: true
+    params: {}
+  root_cause_ranking:
+    enabled: true
+    params: {}
+  rag:
+    enabled: true
+    params: {}
+  llm_diagnosis:
+    enabled: true
+    params: {}
+  nli_verification:
+    enabled: true
+    params: {}

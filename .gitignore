@@ -1,0 +1,45 @@
+# Virtual environments
+.venv/
+venv/
+env/
+.conda/
+
+# Python cache / build artefacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# Application-specific configs (keep only the template in git)
+config/applications/*.yaml
+!config/applications/_template.yaml
+
+# Generated data, models, indexes, results
+data/*
+!data/.gitkeep
+*.log
+logs/
+models/
+vector_store/
+results/
+.ipynb_checkpoints/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
